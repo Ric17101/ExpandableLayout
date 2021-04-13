@@ -3,9 +3,9 @@ package sg.firstcom.expandablelayout.examplesearch;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
@@ -50,10 +50,8 @@ public class ExampleSearchActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.expandButton:
-                mExpandLayout.expand();
-                break;
+        if (v.getId() == R.id.expandButton) {
+            mExpandLayout.expand();
         }
     }
 }

@@ -2,16 +2,13 @@ package sg.firstcom.expandablelayout.exampleexpanded;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
-
 import sg.firstcom.expandablelayout.R;
 
 
@@ -43,11 +40,7 @@ public class ExampleReadMoreActivity extends AppCompatActivity implements View.O
             public void onGlobalLayout() {
                 mExpandLayout.move(mOverlayText.getHeight(), 0, null);
 
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                    mOverlayText.getViewTreeObserver().removeGlobalOnLayoutListener(mGlobalLayoutListener);
-                } else {
-                    mOverlayText.getViewTreeObserver().removeOnGlobalLayoutListener(mGlobalLayoutListener);
-                }
+                mOverlayText.getViewTreeObserver().removeOnGlobalLayoutListener(mGlobalLayoutListener);
             }
         };
         mOverlayText.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutListener);
@@ -55,12 +48,10 @@ public class ExampleReadMoreActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.expandButton:
-                mExpandLayout.expand();
-                mExpandButton.setVisibility(View.GONE);
-                mOverlayText.setVisibility(View.GONE);
-                break;
+        if (v.getId() == R.id.expandButton) {
+            mExpandLayout.expand();
+            mExpandButton.setVisibility(View.GONE);
+            mOverlayText.setVisibility(View.GONE);
         }
     }
 }
